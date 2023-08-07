@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  web:
+    build:
+      context: .
+      target: dev
+      dockerfile: Dockerfile
+    container_name: docker-react
+    image: docker-react:castor
+    ports:
+      - 2003:5173
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    

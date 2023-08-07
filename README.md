@@ -16,6 +16,12 @@ Running server
 npm run dev
 ```
 
+## With Docker
+
+```bash
+docker-compose up -d
+```
+
 ## Screenshots
 
 ![App Screenshot](./screenshot.png)
