@@ -26,12 +26,12 @@ jobs:
 
       - name: "Login con dockerhub"
         env:
-          DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
 
         run: |
           echo "Login con dockerhub 🔥"
-          docker login -u $DOCKERHUB_USER -p $DOCKER_PASS
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
       
       - name: "Build image"
         env:
