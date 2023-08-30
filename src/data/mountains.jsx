@@ -43,6 +43,17 @@ const mountains = [
     img: montBlanc,
     alt: "Mont Blanc",
   },
+
+  {
+    title: "Monte Everest",
+    description: [
+      "El monte Everest, también conocido en Nepal como Sagarmatha y en el Tíbet como Chomolungma, es la montaña más alta del mundo. Su pico se encuentra a 8 848 msnm​ y fue reconocida oficialmente como la montaña más alta del mundo tras una exhaustiva investigación topográfica realizada en 1856. ",
+    ],
+
+    fuentes: ["https://es.wikipedia.org/wiki/Monte_Everest"],
+    img: everest,
+    alt: "Monte Everest",
+  },
 ];
 
 export default mountains;
