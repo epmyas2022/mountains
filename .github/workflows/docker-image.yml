@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3.6.0
+      with:
+        fetch-depth: 0
+      
+    - name: "Test de comando"
+      run: |
+        echo "Comando ejecutado correctamente 🔥"
+  
+       #run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
