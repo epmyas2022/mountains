@@ -45,7 +45,7 @@ jobs:
         env:
           VERSION: ${{steps.version.outputs.version}}
         run: |
-          echo "Push image $VERSION 🐳"
+          echo "Push image  🐳"
           docker push epmyas2022/mountains:$VERSION
 
         #run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
