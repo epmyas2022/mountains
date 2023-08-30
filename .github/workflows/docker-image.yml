@@ -2,24 +2,33 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3.6.0
-      with:
-        fetch-depth: 0
-      
-    - name: "Test de comando"
-      run: |
-        echo "Comando ejecutado correctamente 🔥"
-  
-       #run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: Checkout
+        uses: actions/checkout@v3.6.0
+        with:
+          fetch-depth: 0
+
+      - name: Git Semantic Version
+        uses: PaulHatch/semantic-version@v5.2.1
+        id: version
+        with:
+          major_pattern: "major:"
+          minor_pattern: "feat:"
+          version_format: "${major}.${minor}.${patch}-prerelease${increment}"
+
+      - name: "Test de comando"
+        env:
+          VERSION: ${{steps.version.outputs.version}}
+
+        run: |
+          echo "New Version $VERSION  🔥"
+
+        #run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
