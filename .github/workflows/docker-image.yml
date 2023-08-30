@@ -24,11 +24,28 @@ jobs:
           minor_pattern: "feat:"
           version_format: "${major}.${minor}.${patch}-prerelease${increment}"
 
-      - name: "Test de comando"
+      - name: "Login con dockerhub"
         env:
-          VERSION: ${{steps.version.outputs.version}}
+          DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
 
         run: |
-          echo "New Version $VERSION  🔥"
+          echo "Login con dockerhub 🔥"
+          docker login -u $DOCKERHUB_USER -p $DOCKER_PASS
+      
+      - name: "Build image"
+        env:
+          VERSION: ${{steps.version.outputs.version}}
+        run: |
+          echo "Build image 🐳"
+          docker build -t epmyas2022/mountains:$VERSION . 
+          echo "Version de imagen $VERSION"
+
+      - name: "Push image"
+        env:
+          VERSION: ${{steps.version.outputs.version}}
+        run: |
+          echo "Push image $VERSION 🐳"
+          docker push epmyas2022/mountains:$VERSION
 
         #run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
